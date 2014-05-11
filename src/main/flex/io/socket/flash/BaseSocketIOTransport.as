@@ -141,6 +141,9 @@ package io.socket.flash
 					case Packet.JSON_TYPE:
 						fireMessageEvent(com.adobe.serialization.json.JSON.decode(data));
 						break;
+					case Packet.EVENT_TYPE:
+						fireMessageEvent(com.adobe.serialization.json.JSON.decode(data));
+						break;
 					case Packet.DISCONNECT_TYPE:
 						disconnect();
 						return;
