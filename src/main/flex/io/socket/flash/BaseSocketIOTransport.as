@@ -243,6 +243,8 @@ package io.socket.flash
 					return Packet.MESSAGE_TYPE + ":::" + String(packet.data);
 				case Packet.JSON_TYPE:
 					return Packet.JSON_TYPE + ":::" + com.adobe.serialization.json.JSON.encode(packet.data);
+                case Packet.EVENT_TYPE:
+                    return Packet.EVENT_TYPE + ":::" + com.adobe.serialization.json.JSON.encode(packet.data);
 				default:
 					return "";
 			}

@@ -142,6 +142,9 @@ package io.socket.flash
 			{
 				packet = new Packet(Packet.MESSAGE_TYPE, message);
 			}
+            else if (message is Object && message.name){
+                packet = new Packet(Packet.EVENT_TYPE, message);
+            }
 			else if (message is Object)
 			{
 				packet = new Packet(Packet.JSON_TYPE, message);
