@@ -24,7 +24,7 @@ package io.socket.flash
 		private var _simpeHostname:String;
         private var _isSecure:Boolean;
 
-		public function WebsocketTransport(hostname:String, displayObject:DisplayObject, isSecure:Boolean = false)
+		public function WebsocketTransport(hostname:String, displayObject:DisplayObject, isSecure:Boolean = false, query:String = '')
 		{
 			super();
             _isSecure = isSecure;
@@ -56,6 +56,8 @@ package io.socket.flash
 			{
 				_cookie = "";
 			}
+
+            _query = query;
 		}
 
 		public override function connect():void

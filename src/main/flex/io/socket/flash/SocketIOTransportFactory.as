@@ -13,9 +13,9 @@ package io.socket.flash
 			_transpors[WebsocketTransport.TRANSPORT_TYPE] = WebsocketTransport;
 		}
 
-		public function createSocketIOTransport(transportName:String, hostname:String, displayObject:DisplayObject, isSecure:Boolean = false):ISocketIOTransport
+		public function createSocketIOTransport(transportName:String, hostname:String, displayObject:DisplayObject, isSecure:Boolean = false, query:String = ''):ISocketIOTransport
 		{
-			return new _transpors[transportName](hostname, displayObject, isSecure);
+			return new _transpors[transportName](hostname, displayObject, isSecure, query);
 		}
 	}
 }

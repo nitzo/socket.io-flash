@@ -18,6 +18,7 @@ package io.socket.flash
 		public static const PROTOCOL_VERSION:String = "1";
 		private var _connectLoader:URLLoader;
 		protected var _sessionId:String;
+        protected var _query:String;
 
 		public function BaseSocketIOTransport(hostname:String = "")
 		{
@@ -34,6 +35,14 @@ package io.socket.flash
 			return _hostname;
 		}
 
+        public function get query():String {
+            if (_query){
+                return '&' + _query;
+            }
+
+            return '';
+        }
+
 		public function send(message:Object):void
 		{
 		}
@@ -46,7 +55,7 @@ package io.socket.flash
 		public function connect():void
 		{
 			var urlLoader:URLLoader = new URLLoader();
-			var urlRequest:URLRequest = new URLRequest(hostname + "/" + PROTOCOL_VERSION + "/?t=" + currentMills());
+			var urlRequest:URLRequest = new URLRequest(hostname + "/" + PROTOCOL_VERSION + "/?t=" + currentMills() + query);
 			urlLoader.addEventListener(Event.COMPLETE, onConnectedComplete);
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onConnectIoErrorEvent);
 			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onConnectSecurityError);

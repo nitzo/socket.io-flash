@@ -18,7 +18,7 @@ package io.socket.flash
 		private var _pollingLoader:URLLoader;
 		private var _httpDataSender:HttpDataSender;
 
-		public function XhrPollingTransport(hostname:String, displayObject:DisplayObject, isSecure:Boolean = false)
+		public function XhrPollingTransport(hostname:String, displayObject:DisplayObject, isSecure:Boolean = false, query:String = '')
 		{
             super();
             if (isSecure) {
@@ -27,6 +27,7 @@ package io.socket.flash
                 _hostname = "http://" + hostname
             }
 			_displayObject = displayObject;
+            _query = query;
 		}
 
 		public override function connect():void
