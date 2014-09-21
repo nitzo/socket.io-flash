@@ -85,6 +85,7 @@ package io.socket.flash
 			_webSocket.addEventListener(WebSocketEvent.MESSAGE, onWebSocketMessage);
 			_webSocket.addEventListener(WebSocketEvent.CLOSE, onWebSocketClose);
 			_webSocket.addEventListener(WebSocketEvent.ERROR, onWebSocketError);
+            _webSocket.addEventListener(WebSocketEvent.SECURITY_ERROR, onWebSocketSecurityError);
 			_status = CONNECTING;
 		}
 
@@ -112,6 +113,7 @@ package io.socket.flash
 				_webSocket.removeEventListener(WebSocketEvent.MESSAGE, onWebSocketMessage);
 				_webSocket.removeEventListener(WebSocketEvent.CLOSE, onWebSocketClose);
 				_webSocket.removeEventListener(WebSocketEvent.ERROR, onWebSocketError);
+                _webSocket.removeEventListener(WebSocketEvent.SECURITY_ERROR, onWebSocketSecurityError);
 				_webSocket = null;
 				fireDisconnectEvent();
 			}
@@ -122,6 +124,11 @@ package io.socket.flash
 			var errorEvent:SocketIOErrorEvent = new SocketIOErrorEvent(SocketIOErrorEvent.CONNECTION_FAULT, event.reason);
 			dispatchEvent(errorEvent);
 		}
+
+        private function onWebSocketSecurityError(event:WebSocketEvent){
+            var errorEvent:SocketIOErrorEvent = new SocketIOErrorEvent(SocketIOErrorEvent.SECURITY_FAULT, event.toString());
+            dispatchEvent(errorEvent);
+        }
 
 		private function onWebSocketMessage(event:WebSocketEvent):void
 		{
